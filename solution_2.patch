@@ -1,0 +1,16 @@
+// BEFORE (vulnerable code)
+let mut buffer = String::new();
+for arg in args {
+    buffer.push_str(arg);
+}
+
+// AFTER (safe code)
+let mut buffer = String::new();
+for arg in args {
+    let arg_len = arg.len();
+    if buffer.capacity() >= buffer.len() + arg_len {
+        buffer.push_str(arg);
+    } else {
+        buffer.push_str(&format!("{}{}", buffer, arg));
+    }
+}
