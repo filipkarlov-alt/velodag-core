@@ -1,0 +1,15 @@
+diff --git a/src/p2p.rs b/src/p2p.rs
+--- a/src/p2p.rs
++++ b/src/p2p.rs
+@@ -120,6 +120,12 @@ impl P2pNode {
+         // Other P2P logic
+     }
+
++    // Verify wallet address
++    if let Err(e) = verify_wallet_address(wallet_address) {
++        return Err(format!("Failed to verify wallet address: {}", e));
++    }
++
++
+     // Continue with P2P logic
+ }
