@@ -1,0 +1,22 @@
+diff --git a/src/p2p.rs b/src/p2p.rs
+--- a/src/p2p.rs
++++ b/src/p2p.rs
+@@ -45,7 +45,7 @@ pub struct P2pNode {
+     // Other fields...
+ }
+ 
+-impl P2pNode {
++impl P2pNode {
+     pub fn handle_message(&mut self, message: Message) {
+         // Original handling code
+         if message.is_valid() {
+@@ -55,6 +55,8 @@ impl P2pNode {
+             self.send_to_peers(message.clone());
+         }
+     }
++
++    fn validate_message(&self, message: &Message) -> bool {
++        // Implement strict validation logic
++        true
+     }
+ }
