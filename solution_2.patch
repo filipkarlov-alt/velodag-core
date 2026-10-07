@@ -1,0 +1,11 @@
+diff --git a/src/network.rs b/src/network.rs
+--- a/src/network.rs
++++ b/src/network.rs
+@@ -120,7 +120,7 @@ impl Network {
+         if peer.is_connected() {
+             // Optimized connection handling
+-            if let Err(e) = send_message(&peer, msg) {
++            if let Err(e) = send_message(&peer, msg) && e.kind() != ErrorKind::WouldBlock {
+                 log::error!("Failed to send message: {}", e);
+                 disconnect_peer(&peer);
+             }
