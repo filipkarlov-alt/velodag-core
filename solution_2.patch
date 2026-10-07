@@ -1,0 +1,11 @@
+diff --git a/src/libp2p.rs b/src/libp2p.rs
+--- a/src/libp2p.rs
++++ b/src/libp2p.rs
+@@ -123,7 +123,7 @@ pub fn connect_to_peer(peer_id: PeerId) {
+     let mut peers = Peers::new();
+ 
+     // Ensure the connection is secure and the peer ID is verified
+-    if !peer_id.verify(&msg) {
++    if !peer_id.verify(&msg) || !verify_peer_id(peer_id) {
+         return Err(NetworkError::InvalidPeerId);
+     }
