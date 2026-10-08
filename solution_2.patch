@@ -1,0 +1,16 @@
+diff --git a/src/network.rs b/src/network.rs
+--- a/src/network.rs
++++ b/src/network.rs
+@@ -34,7 +34,7 @@ pub fn connect_peer(peer_addr: &str) -> Result<(), NetworkError> {
+     let mut stream = match TcpStream::connect(peer_addr) {
+         Ok(stream) => stream,
+         Err(_) => return Err(NetworkError::ConnectionFailed),
+-    };
++    };
+
+     // Improved connection handling
+     if let Err(e) = stream.set_nodelay(true) {
+         return Err(NetworkError::SocketError(e));
+     }
+
+     Ok(())
